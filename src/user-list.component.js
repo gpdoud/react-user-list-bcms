@@ -12,27 +12,44 @@ function UserListComponent() {
         fetchUsers();
     });
     return (
-        <table className="table table-sm">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                </tr>
-            </thead>
-            <tbody>
-            {users.map( (v,k) => {
-                if(v.active)
-                    return (
-                        <tr key={v.id}>
-                            <td>{v.id}</td>
-                            <td>{v.firstname} {v.lastname}</td>
-                            <td>{v.username}</td>
-                        </tr>
-                    )
-            })}  
-            </tbody> 
-        </table>
+        <div>
+            <div>
+                <label>User List</label>
+                <span> | </span>
+                <a href="#top">New</a>
+            </div>
+            <hr></hr>
+            <table className="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {users.filter(v => v.active).map( (v,k) => 
+                    <tr key={v.id}>
+                        <td>{v.id}</td>
+                        <td>{v.firstname} {v.lastname}</td>
+                        <td>{v.username}</td>
+                        <td>{v.cellPhone}</td>
+                        <td>{v.email}</td>
+                        <td>{v.active ? 'Yes' : 'No'}</td>
+                        <td>
+                            <a href="#top">Detail</a>
+                            <span> | </span>
+                            <a href="#top">Edit</a>
+                        </td>
+                    </tr>
+                )}  
+                </tbody> 
+            </table>
+        </div>
     )
 }
 
